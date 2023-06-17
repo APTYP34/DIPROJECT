@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище APTYPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Аккаунт">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="idRole" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Заказы">
+          <Key>
+            <PropertyRef Name="IDзаказа1" />
+          </Key>
+          <Property Name="IDзаказа1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия2" Type="int" />
+          <Property Name="Имя2" Type="int" />
+          <Property Name="Отчество2" Type="int" />
+          <Property Name="Поставщик2" Type="int" />
+          <Property Name="Банк2" Type="int" />
+          <Property Name="Сумма" Type="int" />
+          <Property Name="Дата" Type="date" />
+        </EntityType>
+        <EntityType Name="Историязаказов">
+          <Key>
+            <PropertyRef Name="IDистории1" />
+          </Key>
+          <Property Name="IDистории1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия2" Type="int" />
+          <Property Name="Имя2" Type="int" />
+          <Property Name="Отчество2" Type="int" />
+          <Property Name="Поставщик2" Type="int" />
+          <Property Name="Банк2" Type="int" />
+          <Property Name="Сумма2" Type="int" />
+          <Property Name="ДатаЗаказа2" Type="int" />
+          <Property Name="Статус" Type="nvarchar" MaxLength="50" />
+          <Property Name="ОкончательнаяДата" Type="date" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="IDклиента1" />
+          </Key>
+          <Property Name="IDклиента1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Платежи">
+          <Key>
+            <PropertyRef Name="IDплатежа1" />
+          </Key>
+          <Property Name="IDплатежа1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Банк" Type="nvarchar" MaxLength="50" />
+          <Property Name="Валюта" Type="nvarchar" MaxLength="50" />
+          <Property Name="Страна" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Поставщики">
+          <Key>
+            <PropertyRef Name="IDпоставщика1" />
+          </Key>
+          <Property Name="IDпоставщика1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="50" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Роль">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Аккаунт_Роль">
+          <End Role="Роль" Type="Self.Роль" Multiplicity="1" />
+          <End Role="Аккаунт" Type="Self.Аккаунт" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Роль">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Аккаунт">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Фамилия2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты1">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Имя2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты2">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Отчество2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Платежи">
+          <End Role="Платежи" Type="Self.Платежи" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Платежи">
+              <PropertyRef Name="IDплатежа1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Банк2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Поставщики">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="IDпоставщика1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Поставщик2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Сумма2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы1">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="ДатаЗаказа2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы2">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Фамилия2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы3">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Сумма2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы4">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="ДатаЗаказа2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Фамилия2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Клиенты1">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Имя2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Клиенты2">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Отчество2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Платежи">
+          <End Role="Платежи" Type="Self.Платежи" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Платежи">
+              <PropertyRef Name="IDплатежа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Банк2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Поставщики">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="IDпоставщика1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Поставщик2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Поставщики1">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="IDпоставщика1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Поставщик2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище APTYPModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Аккаунт" EntityType="Self.Аккаунт" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заказы" EntityType="Self.Заказы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Историязаказов" EntityType="Self.Историязаказов" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Платежи" EntityType="Self.Платежи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Поставщики" EntityType="Self.Поставщики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Роль" EntityType="Self.Роль" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Аккаунт_Роль" Association="Self.FK_Аккаунт_Роль">
+            <End Role="Роль" EntitySet="Роль" />
+            <End Role="Аккаунт" EntitySet="Аккаунт" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты" Association="Self.FK_Заказы_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты1" Association="Self.FK_Заказы_Клиенты1">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты2" Association="Self.FK_Заказы_Клиенты2">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Платежи" Association="Self.FK_Заказы_Платежи">
+            <End Role="Платежи" EntitySet="Платежи" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Поставщики" Association="Self.FK_Заказы_Поставщики">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы" Association="Self.FK_Историязаказов_Заказы">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы1" Association="Self.FK_Историязаказов_Заказы1">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы2" Association="Self.FK_Историязаказов_Заказы2">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы3" Association="Self.FK_Историязаказов_Заказы3">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы4" Association="Self.FK_Историязаказов_Заказы4">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Клиенты" Association="Self.FK_Историязаказов_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Клиенты1" Association="Self.FK_Историязаказов_Клиенты1">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Клиенты2" Association="Self.FK_Историязаказов_Клиенты2">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Платежи" Association="Self.FK_Историязаказов_Платежи">
+            <End Role="Платежи" EntitySet="Платежи" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Поставщики" Association="Self.FK_Историязаказов_Поставщики">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Поставщики1" Association="Self.FK_Историязаказов_Поставщики1">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="APTYPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Аккаунт">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Роль" Relationship="Self.FK_Аккаунт_Роль" FromRole="Аккаунт" ToRole="Роль" />
+        </EntityType>
+        <EntityType Name="Заказы">
+          <Key>
+            <PropertyRef Name="IDзаказа1" />
+          </Key>
+          <Property Name="IDзаказа1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия2" Type="Int32" />
+          <Property Name="Имя2" Type="Int32" />
+          <Property Name="Отчество2" Type="Int32" />
+          <Property Name="Поставщик2" Type="Int32" />
+          <Property Name="Банк2" Type="Int32" />
+          <Property Name="Сумма" Type="Int32" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Клиенты" Relationship="Self.FK_Заказы_Клиенты" FromRole="Заказы" ToRole="Клиенты" />
+          <NavigationProperty Name="Клиенты1" Relationship="Self.FK_Заказы_Клиенты1" FromRole="Заказы" ToRole="Клиенты" />
+          <NavigationProperty Name="Клиенты2" Relationship="Self.FK_Заказы_Клиенты2" FromRole="Заказы" ToRole="Клиенты" />
+          <NavigationProperty Name="Платежи" Relationship="Self.FK_Заказы_Платежи" FromRole="Заказы" ToRole="Платежи" />
+          <NavigationProperty Name="Поставщики" Relationship="Self.FK_Заказы_Поставщики" FromRole="Заказы" ToRole="Поставщики" />
+          <NavigationProperty Name="Историязаказов" Relationship="Self.FK_Историязаказов_Заказы" FromRole="Заказы" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов1" Relationship="Self.FK_Историязаказов_Заказы1" FromRole="Заказы" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов2" Relationship="Self.FK_Историязаказов_Заказы2" FromRole="Заказы" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов3" Relationship="Self.FK_Историязаказов_Заказы3" FromRole="Заказы" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов4" Relationship="Self.FK_Историязаказов_Заказы4" FromRole="Заказы" ToRole="Историязаказов" />
+        </EntityType>
+        <EntityType Name="Историязаказов">
+          <Key>
+            <PropertyRef Name="IDистории1" />
+          </Key>
+          <Property Name="IDистории1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия2" Type="Int32" />
+          <Property Name="Имя2" Type="Int32" />
+          <Property Name="Отчество2" Type="Int32" />
+          <Property Name="Поставщик2" Type="Int32" />
+          <Property Name="Банк2" Type="Int32" />
+          <Property Name="Сумма2" Type="Int32" />
+          <Property Name="ДатаЗаказа2" Type="Int32" />
+          <Property Name="Статус" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ОкончательнаяДата" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Историязаказов_Заказы" FromRole="Историязаказов" ToRole="Заказы" />
+          <NavigationProperty Name="Заказы1" Relationship="Self.FK_Историязаказов_Заказы1" FromRole="Историязаказов" ToRole="Заказы" />
+          <NavigationProperty Name="Заказы2" Relationship="Self.FK_Историязаказов_Заказы2" FromRole="Историязаказов" ToRole="Заказы" />
+          <NavigationProperty Name="Заказы3" Relationship="Self.FK_Историязаказов_Заказы3" FromRole="Историязаказов" ToRole="Заказы" />
+          <NavigationProperty Name="Заказы4" Relationship="Self.FK_Историязаказов_Заказы4" FromRole="Историязаказов" ToRole="Заказы" />
+          <NavigationProperty Name="Клиенты" Relationship="Self.FK_Историязаказов_Клиенты" FromRole="Историязаказов" ToRole="Клиенты" />
+          <NavigationProperty Name="Клиенты1" Relationship="Self.FK_Историязаказов_Клиенты1" FromRole="Историязаказов" ToRole="Клиенты" />
+          <NavigationProperty Name="Клиенты2" Relationship="Self.FK_Историязаказов_Клиенты2" FromRole="Историязаказов" ToRole="Клиенты" />
+          <NavigationProperty Name="Платежи" Relationship="Self.FK_Историязаказов_Платежи" FromRole="Историязаказов" ToRole="Платежи" />
+          <NavigationProperty Name="Поставщики" Relationship="Self.FK_Историязаказов_Поставщики" FromRole="Историязаказов" ToRole="Поставщики" />
+          <NavigationProperty Name="Поставщики1" Relationship="Self.FK_Историязаказов_Поставщики1" FromRole="Историязаказов" ToRole="Поставщики" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="IDклиента1" />
+          </Key>
+          <Property Name="IDклиента1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Клиенты" FromRole="Клиенты" ToRole="Заказы" />
+          <NavigationProperty Name="Заказы1" Relationship="Self.FK_Заказы_Клиенты1" FromRole="Клиенты" ToRole="Заказы" />
+          <NavigationProperty Name="Заказы2" Relationship="Self.FK_Заказы_Клиенты2" FromRole="Клиенты" ToRole="Заказы" />
+          <NavigationProperty Name="Историязаказов" Relationship="Self.FK_Историязаказов_Клиенты" FromRole="Клиенты" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов1" Relationship="Self.FK_Историязаказов_Клиенты1" FromRole="Клиенты" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов2" Relationship="Self.FK_Историязаказов_Клиенты2" FromRole="Клиенты" ToRole="Историязаказов" />
+        </EntityType>
+        <EntityType Name="Платежи">
+          <Key>
+            <PropertyRef Name="IDплатежа1" />
+          </Key>
+          <Property Name="IDплатежа1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Банк" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Валюта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Страна" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Платежи" FromRole="Платежи" ToRole="Заказы" />
+          <NavigationProperty Name="Историязаказов" Relationship="Self.FK_Историязаказов_Платежи" FromRole="Платежи" ToRole="Историязаказов" />
+        </EntityType>
+        <EntityType Name="Поставщики">
+          <Key>
+            <PropertyRef Name="IDпоставщика1" />
+          </Key>
+          <Property Name="IDпоставщика1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Заказы" Relationship="Self.FK_Заказы_Поставщики" FromRole="Поставщики" ToRole="Заказы" />
+          <NavigationProperty Name="Историязаказов" Relationship="Self.FK_Историязаказов_Поставщики" FromRole="Поставщики" ToRole="Историязаказов" />
+          <NavigationProperty Name="Историязаказов1" Relationship="Self.FK_Историязаказов_Поставщики1" FromRole="Поставщики" ToRole="Историязаказов" />
+        </EntityType>
+        <EntityType Name="Роль">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Аккаунт" Relationship="Self.FK_Аккаунт_Роль" FromRole="Роль" ToRole="Аккаунт" />
+        </EntityType>
+        <Association Name="FK_Аккаунт_Роль">
+          <End Role="Роль" Type="Self.Роль" Multiplicity="1" />
+          <End Role="Аккаунт" Type="Self.Аккаунт" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Роль">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Аккаунт">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Фамилия2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты1">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Имя2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Клиенты2">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Отчество2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Платежи">
+          <End Role="Платежи" Type="Self.Платежи" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Платежи">
+              <PropertyRef Name="IDплатежа1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Банк2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Поставщики">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="IDпоставщика1" />
+            </Principal>
+            <Dependent Role="Заказы">
+              <PropertyRef Name="Поставщик2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Сумма2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы1">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="ДатаЗаказа2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы2">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Фамилия2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы3">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Сумма2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Заказы4">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="IDзаказа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="ДатаЗаказа2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Фамилия2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Клиенты1">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Имя2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Клиенты2">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="IDклиента1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Отчество2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Платежи">
+          <End Role="Платежи" Type="Self.Платежи" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Платежи">
+              <PropertyRef Name="IDплатежа1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Банк2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Поставщики">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="IDпоставщика1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Поставщик2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Историязаказов_Поставщики1">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Историязаказов" Type="Self.Историязаказов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="IDпоставщика1" />
+            </Principal>
+            <Dependent Role="Историязаказов">
+              <PropertyRef Name="Поставщик2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APTYPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Аккаунт" EntityType="Self.Аккаунт" />
+          <EntitySet Name="Заказы" EntityType="Self.Заказы" />
+          <EntitySet Name="Историязаказов" EntityType="Self.Историязаказов" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+          <EntitySet Name="Платежи" EntityType="Self.Платежи" />
+          <EntitySet Name="Поставщики" EntityType="Self.Поставщики" />
+          <EntitySet Name="Роль" EntityType="Self.Роль" />
+          <AssociationSet Name="FK_Аккаунт_Роль" Association="Self.FK_Аккаунт_Роль">
+            <End Role="Роль" EntitySet="Роль" />
+            <End Role="Аккаунт" EntitySet="Аккаунт" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты" Association="Self.FK_Заказы_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты1" Association="Self.FK_Заказы_Клиенты1">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Клиенты2" Association="Self.FK_Заказы_Клиенты2">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Платежи" Association="Self.FK_Заказы_Платежи">
+            <End Role="Платежи" EntitySet="Платежи" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Поставщики" Association="Self.FK_Заказы_Поставщики">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Заказы" EntitySet="Заказы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы" Association="Self.FK_Историязаказов_Заказы">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы1" Association="Self.FK_Историязаказов_Заказы1">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы2" Association="Self.FK_Историязаказов_Заказы2">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы3" Association="Self.FK_Историязаказов_Заказы3">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Заказы4" Association="Self.FK_Историязаказов_Заказы4">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Клиенты" Association="Self.FK_Историязаказов_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Клиенты1" Association="Self.FK_Историязаказов_Клиенты1">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Клиенты2" Association="Self.FK_Историязаказов_Клиенты2">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Платежи" Association="Self.FK_Историязаказов_Платежи">
+            <End Role="Платежи" EntitySet="Платежи" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Поставщики" Association="Self.FK_Историязаказов_Поставщики">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Историязаказов_Поставщики1" Association="Self.FK_Историязаказов_Поставщики1">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Историязаказов" EntitySet="Историязаказов" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище APTYPModelContainer" CdmEntityContainer="APTYPEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="APTYPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Аккаунт">
+            <EntityTypeMapping TypeName="APTYPModel.Аккаунт">
+              <MappingFragment StoreEntitySet="Аккаунт">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заказы">
+            <EntityTypeMapping TypeName="APTYPModel.Заказы">
+              <MappingFragment StoreEntitySet="Заказы">
+                <ScalarProperty Name="IDзаказа1" ColumnName="IDзаказа1" />
+                <ScalarProperty Name="Фамилия2" ColumnName="Фамилия2" />
+                <ScalarProperty Name="Имя2" ColumnName="Имя2" />
+                <ScalarProperty Name="Отчество2" ColumnName="Отчество2" />
+                <ScalarProperty Name="Поставщик2" ColumnName="Поставщик2" />
+                <ScalarProperty Name="Банк2" ColumnName="Банк2" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Историязаказов">
+            <EntityTypeMapping TypeName="APTYPModel.Историязаказов">
+              <MappingFragment StoreEntitySet="Историязаказов">
+                <ScalarProperty Name="IDистории1" ColumnName="IDистории1" />
+                <ScalarProperty Name="Фамилия2" ColumnName="Фамилия2" />
+                <ScalarProperty Name="Имя2" ColumnName="Имя2" />
+                <ScalarProperty Name="Отчество2" ColumnName="Отчество2" />
+                <ScalarProperty Name="Поставщик2" ColumnName="Поставщик2" />
+                <ScalarProperty Name="Банк2" ColumnName="Банк2" />
+                <ScalarProperty Name="Сумма2" ColumnName="Сумма2" />
+                <ScalarProperty Name="ДатаЗаказа2" ColumnName="ДатаЗаказа2" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="ОкончательнаяДата" ColumnName="ОкончательнаяДата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиенты">
+            <EntityTypeMapping TypeName="APTYPModel.Клиенты">
+              <MappingFragment StoreEntitySet="Клиенты">
+                <ScalarProperty Name="IDклиента1" ColumnName="IDклиента1" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Платежи">
+            <EntityTypeMapping TypeName="APTYPModel.Платежи">
+              <MappingFragment StoreEntitySet="Платежи">
+                <ScalarProperty Name="IDплатежа1" ColumnName="IDплатежа1" />
+                <ScalarProperty Name="Банк" ColumnName="Банк" />
+                <ScalarProperty Name="Валюта" ColumnName="Валюта" />
+                <ScalarProperty Name="Страна" ColumnName="Страна" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Поставщики">
+            <EntityTypeMapping TypeName="APTYPModel.Поставщики">
+              <MappingFragment StoreEntitySet="Поставщики">
+                <ScalarProperty Name="IDпоставщика1" ColumnName="IDпоставщика1" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Роль">
+            <EntityTypeMapping TypeName="APTYPModel.Роль">
+              <MappingFragment StoreEntitySet="Роль">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

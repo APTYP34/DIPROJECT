@@ -1,0 +1,156 @@
+﻿<Window x:Class="DIPROJECT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:DIPROJECT"
+        mc:Ignorable="d"
+        Height="450" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        Background="Transparent">
+
+    <Grid Background="#2B2B40" HorizontalAlignment="Left" Width="160">
+        <Grid Background="#FF2B2B40" Height="20" VerticalAlignment="Top" Margin="0,0,-840,0" HorizontalAlignment="Right" Width="840"/>
+        <Label x:Name="label" Content="Приложение для учета клиентов" HorizontalAlignment="Right" Margin="0,-4,-513,0" Foreground="White" Height="28" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <Frame Name="MainFrame" Background="#3C3C5B" Margin="0,20,-840,0" HorizontalAlignment="Right" Width="840" NavigationUIVisibility="Hidden"/>
+
+        <!--Кнопка с клиентами-->
+        <Button x:Name="ClientsOne"  Margin="0,142,-1,0" 
+                VerticalAlignment="Top" 
+                Background="#FF2B2B40" BorderBrush="{x:Null}" 
+                Foreground="White" 
+                FontSize="18" Height="30" Click="btnCli">
+
+            <Button.Content>
+                <TextBlock Text="Клиенты" TextAlignment="Left" Width="140" Foreground="White"/>
+            </Button.Content>
+
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2B2B40" TargetName="border"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!--Кнопка с заказами-->
+        <Button x:Name="OrdersOne"  Margin="0,182,-1,0" 
+                VerticalAlignment="Top" 
+                Background="{x:Null}" BorderBrush="{x:Null}" 
+                Foreground="White" FontFamily="Century Gothic" 
+                FontSize="18" Height="30" Click="btnOrd_Click">
+
+            <Button.Content>
+                <TextBlock Text="Заказы" TextAlignment="Left" Width="140" Foreground="White" FontFamily="Segoe UI"/>
+            </Button.Content>
+
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2B2B40" TargetName="border"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!--Кнопка с историей заказов-->
+        <Button x:Name="HisOrdersOne"  Margin="0,222,-1,198" 
+                Background="{x:Null}" BorderBrush="{x:Null}" 
+                Foreground="White" FontFamily="Century Gothic" 
+                FontSize="18" Click="btnHisOrd">
+
+            <Button.Content>
+                <TextBlock Text="История зак-ов" TextAlignment="Left" Width="140" Foreground="White" FontFamily="Segoe UI"/>
+            </Button.Content>
+
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2B2B40" TargetName="border"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!--Кнопка с настройками-->
+        <Button x:Name="SettingsOne"  Margin="0,262,-1,0" 
+                VerticalAlignment="Top" 
+                Background="{x:Null}" BorderBrush="{x:Null}" 
+                Foreground="White" FontFamily="Century Gothic" 
+                FontSize="18" Height="30" Click="btnSett">
+
+            <Button.Content>
+                <TextBlock Text="Настройки" TextAlignment="Left" Width="140" Foreground="White" FontFamily="Segoe UI"/>
+            </Button.Content>
+
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2B2B40" TargetName="border"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        
+        <Image x:Name="image" Height="132" VerticalAlignment="Top"  Stretch="UniformToFill" Source="/DIPROJECT;component/Images/Untitled (2).png" Margin="5,4,5,0"/>
+        <Button x:Name="btnClose"  HorizontalAlignment="Right" Margin="0,0,-840,0" VerticalAlignment="Top" Width="20" Height="20" Click="btnClose_Click"/>
+        <Label x:Name="label1" Content="Выберите таблицу..." HorizontalAlignment="Right" Margin="0,0,-584,194" VerticalAlignment="Bottom" Foreground="#FF515183" FontSize="36"/>
+        <TextBlock x:Name="textBlock" Margin="53,0,53,4" TextWrapping="Wrap" Text="ARTIKIUM" VerticalAlignment="Bottom" FontFamily="Century Gothic" Foreground="#FF3C3C5B"/>
+
+
+    </Grid>
+</Window>

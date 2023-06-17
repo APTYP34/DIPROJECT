@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c72d1c6a35b14c919f7f0c80476af141" Name="Diagram1">
+        <EntityTypeShape EntityType="APTYPModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Аккаунт" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Заказы" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Историязаказов" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Клиенты" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Платежи" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Поставщики" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTYPModel.Роль" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="APTYPModel.FK_Аккаунт_Роль" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Заказы_Клиенты" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Заказы_Клиенты1" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Заказы_Клиенты2" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Заказы_Платежи" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Заказы_Поставщики" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Заказы" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Заказы1" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Заказы2" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Заказы3" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Заказы4" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Клиенты" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Клиенты1" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Клиенты2" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Платежи" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Поставщики" ManuallyRouted="false" />
+        <AssociationConnector Association="APTYPModel.FK_Историязаказов_Поставщики1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

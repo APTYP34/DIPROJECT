@@ -1,0 +1,30 @@
+﻿<Page x:Class="DIPROJECT._2Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DIPROJECT._2Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" Width="800">
+
+    <Grid Background="#FF2B2B40" Margin="0,-1,0,0">
+        <Grid Background="white" Margin="102,37,102,0" Height="1" VerticalAlignment="Top"/>
+        <Grid Background="white" Margin="102,9,102,0" Height="1" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="НАСТРОЙКА ЛИЧНЫХ ДАННЫХ ПОЛЬЗОВАТЕЛЯ:" Margin="244,10,244,0" VerticalAlignment="Top" Height="26" Foreground="White" FontWeight="Bold"/>
+        <Label x:Name="label1" Content="Ваш логин:" Margin="39,160,0,0" Foreground="White" Height="56" VerticalAlignment="Top" FontSize="28" HorizontalAlignment="Left" Width="157"/>
+        <TextBlock x:Name="txbLog" Margin="196,168,0,0" TextWrapping="Wrap" Background="#FF3C3C5B" Foreground="White" Height="38" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" RenderTransformOrigin="0.5,0.5" FontSize="28" HorizontalAlignment="Left" Width="184"/>
+        <Label x:Name="label1_Copy" Content="Ваш пароль:" Margin="20,228,0,0" Foreground="White" FontSize="28" Height="56" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176"/>
+        <TextBlock x:Name="txbPass" Margin="196,234,0,0" TextWrapping="Wrap" Background="#FF3C3C5B" Foreground="White" FontSize="28" Height="38" VerticalAlignment="Top" HorizontalAlignment="Left" Width="184"/>
+        <Label x:Name="label1_Copy1" Content="Ваша роль:" Margin="36,292,0,0" Foreground="White" FontSize="28" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160"/>
+        <TextBlock x:Name="txbRole" Margin="196,298,0,0" TextWrapping="Wrap" Background="#FF3C3C5B" Foreground="White" Height="38" VerticalAlignment="Top" FontSize="28" HorizontalAlignment="Left" Width="184"/>
+
+        <Label x:Name="lblName" Content="{Binding Name}" Margin="240,48,240,0" Foreground="White" Height="82" VerticalAlignment="Top" FontSize="48" FontWeight="Bold"/>
+
+
+        <Label Content="Новый логин:" HorizontalAlignment="Right" Margin="0,161,207,0" Width="184" Height="43" VerticalAlignment="Top" FontSize="28" Foreground="White" />
+        <TextBox x:Name="txtNewLogin" HorizontalAlignment="Right" Margin="0,170,29,0" Width="178" Height="34" VerticalAlignment="Top" FontSize="28" BorderBrush="{x:Null}" Background="#FF3C3C5B" Foreground="White" />
+        <Label Content="Новый пароль:" HorizontalAlignment="Right" Margin="0,211,189,0" Width="202" FontSize="28" Foreground="White" Height="51" VerticalAlignment="Top" />
+        <PasswordBox x:Name="txtNewPassword" HorizontalAlignment="Right" Margin="0,219,29,0" Width="160" FontSize="28" Background="#FF3C3C5B" BorderBrush="{x:Null}" Foreground="White" Height="33" VerticalAlignment="Top" />
+        <Button x:Name="btnSaveChanges" Content="Сохранить изменения" HorizontalAlignment="Right" Margin="0,291,27,0" VerticalAlignment="Top" Width="357" Click="btnSaveChanges_Click" Height="46" />
+    </Grid>
+</Page>
